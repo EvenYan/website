@@ -15,8 +15,15 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from newsletter.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^home/', home),
+    url(r'^$', 'newsletter.views.home', name='home'),
+    url(r'^contact/', 'newsletter.views.contact', name='contact'),
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
