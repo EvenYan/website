@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
 {% block head_title %}
 
 {% endblock %}
@@ -18,15 +21,20 @@
     {% endblock %}
 
 {% block content %}
-<h1>{{ title }}</h1>
-{{ user }}
-{{ request.user }}
-abc = {{ abc }}
-<form method='POST' action=''>{% csrf_token %}
-    {{ form.as_p }}
-    <!--<input type="text">-->
-    <!--<input>-->
 
-    <input class="btn btn-primary btn-block" type="submit" value="Sign up">
-</form>
+<div class="row">
+    <div class="col-sm-6 col-md-3">.col-md-4
+        <h1>{{ title }}</h1>
+        {{ user }}
+        {{ request.user }}
+        abc = {{ abc }}
+        <form method='POST' action=''>{% csrf_token %}
+            {{ form|crispy }}
+            <!--<input type="text">-->
+            <!--<input>-->
+
+            <input class="btn btn-primary btn-block" type="submit" value="Sign up">
+        </form>
+    </div>
+</div>
 {% endblock %}
