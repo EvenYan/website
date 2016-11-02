@@ -25,7 +25,10 @@ SECRET_KEY = '_hi%^ny#&8_!nan0&__x&6-6ex_2bz50=!_@96xpx0$dli*c@y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+if DEBUG:
+    ALLOWED_HOSTS = [""]
+else:
+    ALLOWED_HOSTS = ["23.83.229.144:8000", "localhost:8000", "127.0.0.1:8000"]
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'evenwithalice@gmail.com'
@@ -42,10 +45,13 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #third party apps
     'crispy_forms',
+    'registration',
+    'gunicorn',
     #my apps
     'newsletter',
     )
@@ -116,6 +122,11 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static", "our_static"),
 )
 
+#Crispy forms tags settings
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
+#Django registration redux settings
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+SITE_ID = 1
 

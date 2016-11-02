@@ -2,32 +2,48 @@
 {% load crispy_forms_tags %}
 
 
-{% block head_title %}
+{% block head_title %}Welcome | {{ block.super }}{% endblock %}
 
-{% endblock %}
+<style>
+    {% block style %}
 
-      {% block sentence %}
+    {% endblock %}
+
+</style>
+
+      {% block jumbotron %}
 
         <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-        </p>
-      </div>
-
+<div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-6">
+            <h1>欢迎来到初晴小窝</h1>
+            <p>人生的际遇总是很美妙，相遇时候的懵懂美好，热情时候的火辣，平淡时的不甘，反感时的狂风暴雨，而这一切都不能定义完整的爱情。</p>
+            <p>当你小心翼翼的时候，别人的似火柔情；当你爱的浓烈的时候，别人却在退场；然后一切都变成了计较和争锋相对，你要的不是安全感，只是想证明我有多爱你罢了，而这些，越来越和爱情没有关系。</p>
+            <p>
+              <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">进入 &raquo;</a>
+            </p>
+            </div>
+            <div class="col-sm-4" style="background-color:black; min-height:300px">
+            </div>
+        </div>
+</div>
     {% endblock %}
 
 {% block content %}
 
 <div class="row">
-    <div class="col-sm-6 col-md-3">.col-md-4
-        <h1>{{ title }}</h1>
-        {{ user }}
-        {{ request.user }}
-        abc = {{ abc }}
+    <div class="col-sm-3">
+        <p class="lead text-align-center">日志</p>
+    </div>
+   <div class="col-sm-3">
+        <p class="lead text-align-center">图库</p>
+    </div>
+    <div class="col-sm-3">
+        <p class="lead text-align-center">讨论</p>
+    </div>
+    <div class="col-sm-3">
+        <p class="lead">{{ title }}</p>
         <form method='POST' action=''>{% csrf_token %}
             {{ form|crispy }}
             <!--<input type="text">-->
