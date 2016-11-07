@@ -3,6 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from .models import SignUp
 from .forms import SignUpForm
+from .models import Article
 
 class SignUpAdmin(admin.ModelAdmin):
     list_display = ["__str__", "timestamp", "update"]
@@ -12,3 +13,4 @@ class SignUpAdmin(admin.ModelAdmin):
 
 
 admin.site.register(SignUp, SignUpAdmin)
+admin.site.register(Article)

@@ -1,7 +1,10 @@
 from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import render
-from .forms import SignUpForm,ContactForm
+from .forms import SignUpForm, ContactForm
+from .models import Article
+from django.http import HttpResponse
+
 
 # Create your views here.
 def home(request):
@@ -12,7 +15,6 @@ def home(request):
         "form": form
     }
 
-
     if form.is_valid():
         print(request.POST['email'])
         instance = form.save(commit=False)
@@ -21,7 +23,7 @@ def home(request):
             instance.full_name = "New full name"
         instance.save()
         context = {
-            "title":"Tahnk you",
+            "title": "Thank you",
         }
 
     return render(request, 'home.html', context)
@@ -56,3 +58,16 @@ def contact(request):
     }
     return render(request, "forms.html", context)
 
+
+def article(request):
+    post_list = Article.objects.all()
+    context = {
+        'post_list': post_list,
+    }
+    return render(request, 'article.html', context)
+
+
+def detail(request, article_no):
+    post = Article.objects.all()[int(article_no)]
+    str = ("title = %s, category = %s, date_time = %s, content = %s" % (post.title, post.category, post.date_time, post.content))
+    return HttpResponse(str)

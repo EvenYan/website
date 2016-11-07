@@ -15,24 +15,29 @@
 
     <style>
       {% block style %}
-
       {% endblock %}
     </style>
   </head>
 
-  <body>
+
+<body>
   {% include 'navbar.html' %}
 
+  <div class="container-full" style="width:100%">
+    {% block cycle %}
+    {% endblock %}
 
-    <div class="container">
-      {% block jumbotron %}
+    {% block jumbotron %}
+    {% endblock %}
 
-      {% endblock %}
+    {% block content %}
+    {% endblock %}
 
-        {% block content %}
-        {% endblock %}
+    {% block main-content %}
+    {% endblock %}
 
-    </div> <!-- /container -->
+
+  </div>
 
 
     <!-- Bootstrap core JavaScript
@@ -43,5 +48,5 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
-  </body>
+</body>
 </html>
