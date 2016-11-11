@@ -24,10 +24,9 @@ urlpatterns = [
     url(r'^contact/', 'newsletter.views.contact', name='contact'),
     url(r'^about/', 'website.views.about', name='about'),
     url(r'^accounts/', include('registration.backends.default.urls')),
-    url(r'^(?P<article_no>\d+)/$', 'newsletter.views.detail', name='detail'),
     url(r'^article/', 'newsletter.views.article', name='article'),
-
+    url(r'^(?P<article_no>[0-9]+)/$', 'newsletter.views.detail', name='detail'),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+# if settings.DEBUG:
+#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

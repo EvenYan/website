@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import socket
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,12 +24,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_hi%^ny#&8_!nan0&__x&6-6ex_2bz50=!_@96xpx0$dli*c@y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# if socket.gethostbyname() == 'Even Yan':
+#     DEBUG = TEMPLATE_DEBUG = True
+#     DATABASE_NAME = 'mydb_dev'
+# else:
+#     DEBUG = TEMPLATE_DEBUG = False
+#     DATABASE_NAME = 'mydb_pro'
+
 DEBUG = True
 
 if DEBUG:
     ALLOWED_HOSTS = [""]
 else:
-    ALLOWED_HOSTS = ["23.83.229.144:8000", "localhost:8000", "127.0.0.1:8000"]
+    ALLOWED_HOSTS = ["*"]
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'evenwithalice@gmail.com'
@@ -102,11 +110,21 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mydb',
+        'USER': 'root',
+        'PASSWORD': 'even',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '23.83.229.144:11211',
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

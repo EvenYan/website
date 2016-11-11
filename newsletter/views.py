@@ -4,7 +4,7 @@ from django.shortcuts import render
 from .forms import SignUpForm, ContactForm
 from .models import Article
 from django.http import HttpResponse
-
+from django.http import Http404
 
 # Create your views here.
 def home(request):
@@ -68,6 +68,8 @@ def article(request):
 
 
 def detail(request, article_no):
-    post = Article.objects.all()[int(article_no)]
-    str = ("title = %s, category = %s, date_time = %s, content = %s" % (post.title, post.category, post.date_time, post.content))
-    return HttpResponse(str)
+    try:
+        post = Article.objects.get(id=str(article_no))
+    except Article.DoesNotExist:
+        raise Http404
+    return render(request, 'post.html', {'post': post})
