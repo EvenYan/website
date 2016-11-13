@@ -34,7 +34,7 @@ SECRET_KEY = '_hi%^ny#&8_!nan0&__x&6-6ex_2bz50=!_@96xpx0$dli*c@y'
 DEBUG = True
 
 #
-INTERNAL_IPS = ('127.0.0.1',)
+INTERNAL_IPS = ('127.0.0.1', '23.83.229.144',)
 DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.versions.VersionsPanel',
     'debug_toolbar.panels.timer.TimerPanel',
