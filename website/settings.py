@@ -115,7 +115,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'django.middleware..cache.FetchFromCacheMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 ROOT_URLCONF = 'website.urls'
