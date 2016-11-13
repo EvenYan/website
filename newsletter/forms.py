@@ -1,6 +1,6 @@
 from django import forms
 from .models import SignUp
-
+from django_markdown.widgets import MarkdownWidget
 
 class ContactForm(forms.Form):
     full_name = forms.CharField(required=False)
@@ -38,6 +38,4 @@ class SignUpForm(forms.ModelForm):
         full_name = self.cleaned_data.get('full_name')
         # write validation code.
         return full_name
-
-
 

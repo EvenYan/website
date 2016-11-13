@@ -1,19 +1,31 @@
+{% extends "base.html" %}
+{% load custom_markdown %}
+
 <html>
+
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example that shows off a blog page with a list of posts.">
+     <link rel="stylesheet" href="http://picturebag.qiniudn.com/monokai.css">
+</head>
+{% block content %}
 <div class="posts">
         <section class="post">
             <header class="post-header">
                 <h2 class="post-title">{{ post.title }}</h2>
 
                     <p class="post-meta">
-                        Time:  <a class="post-author" href="#">{{ post.date_time|date:"Y /m /d"}}</a> <a class="post-category post-category-js" href="#">{{ post.category }}</a>
+                        Time:  <a class="post-author" href="#">{{ post.date_time|date:"Y /m /d"}}</a> <a class="post-category post-category-js" href="{% url "search_tag" tag=post.category %}">{{ post.category }}</a>
                     </p>
             </header>
 
                 <div class="post-description">
                     <p>
-                        {{ post.content }}
+                        {{ post.content|custom_markdown }}
                     </p>
                 </div>
         </section>
+        {% include "duoshuo.html" %}
 </div><!-- /.blog-post -->
-</html>
+{% endblock %}

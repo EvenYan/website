@@ -73,3 +73,6 @@ def detail(request, article_no):
     except Article.DoesNotExist:
         raise Http404
     return render(request, 'post.html', {'post': post})
+
+def page_not_found(request):
+    return render(request, '404.html')

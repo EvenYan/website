@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django_markdown.admin import MarkdownModelAdmin
 
 # Register your models here.
 from .models import SignUp
@@ -10,7 +11,6 @@ class SignUpAdmin(admin.ModelAdmin):
     form = SignUpForm
     # class Meta:
     #     model = SignUp
-
 
 admin.site.register(SignUp, SignUpAdmin)
 admin.site.register(Article)

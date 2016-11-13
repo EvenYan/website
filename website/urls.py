@@ -18,6 +18,7 @@ from newsletter.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'newsletter.views.home', name='home'),
@@ -26,7 +27,16 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^article/', 'newsletter.views.article', name='article'),
     url(r'^(?P<article_no>[0-9]+)/$', 'newsletter.views.detail', name='detail'),
+    url('^markdown/', include('django_markdown.urls')),
+
 ]
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += (
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    )
 
 # if settings.DEBUG:
 #     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+handler404 = 'newsletter.views.page_not_found'
+
